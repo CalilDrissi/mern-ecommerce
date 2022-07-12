@@ -16,3 +16,7 @@ main {
   transform: scale(1.05);
 
 }
+
+.rating span {
+  margin: 0.1rem;
+}
