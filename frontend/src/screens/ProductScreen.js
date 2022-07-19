@@ -13,12 +13,11 @@ const ProductScreen = () => {
     const fetchProduct = async () => {
       const id = params.id;
       const {data} = await axios.get(`/api/products/${id}`);
-      console.log(data)
       setProduct(data)
     }
 
     fetchProduct();
-}, [])
+}, [params])
 
 
 
