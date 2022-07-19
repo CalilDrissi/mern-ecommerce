@@ -1,10 +1,15 @@
 import express  from  "express"
 import dotenv   from  "dotenv" 
 import products from "./data/products.js"
+import connectDB from "./config/db.js"
+import colors from 'colors'
 
 dotenv.config();
 
+connectDB();
+
 const app = express();
+
 
 app.get("/", (req, res) => {
   res.send("API is Running...");
