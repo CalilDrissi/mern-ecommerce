@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Card, Button, Form } from "react-bootstrap";
 import Rating from "../components/Rating";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,13 @@ const ProductScreen = () => {
   useEffect(() => {
     dispatch(listProductDetails(params.id));
   }, [params, dispatch]);
+
+// what will this function do? 
+let navigate = useNavigate();
+
+  const addToCartHandler = () => {
+      navigate(`/cart/${params.id}?qty=${qty}`)
+  }
 
   return (
     <>
@@ -72,16 +79,7 @@ const ProductScreen = () => {
                   </Row>
                 </ListGroup.Item>
 
-                <ListGroup.Item>
-                  <Row>
-                    <Col>Status:</Col>
-                    <Col>
-                      {product.countInStock > 0 ? "In stock" : "Out of stock"}
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-
-
+               
                 {product.countInStock > 0 && (
                     <ListGroup.Item>
                       <Row>
@@ -108,6 +106,7 @@ const ProductScreen = () => {
 
                 <ListGroup.Item>
                   <Button
+                    onClick={addToCartHandler}
                     className="btn-block"
                     type="button"
                     disabled={product.countInStock === 0}
